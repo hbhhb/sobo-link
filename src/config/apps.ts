@@ -12,9 +12,9 @@ export const apps: Record<string, AppConfig> = {
   'time-ledger': {
     slug: 'time-ledger',
     redirects: {
-      ios: 'https://apps.apple.com/kr/app/idYOUR_APP_ID', 
+      ios: 'https://apps.apple.com/us/app/time-ledger-budget-your-time/id6757844735',
       android: 'https://play.google.com/store/apps/details?id=com.yours.app',
-      default: 'https://sobo.house', // 소개 페이지
+      default: 'https://apps.apple.com/us/app/time-ledger-budget-your-time/id6757844735',
     },
   },
 };
