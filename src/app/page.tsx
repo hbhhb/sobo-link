@@ -1,35 +1,26 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-900">
-      <Card className="w-full max-w-md shadow-lg border-0 bg-white/50 backdrop-blur-sm dark:bg-slate-800/50">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Sobo Link</CardTitle>
-          <CardDescription className="text-center">
-            Smart Link Distribution Service
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="text-center text-sm text-muted-foreground leading-relaxed">
-            모바일 환경에 최적화된 앱 다운로드 링크를 제공합니다.<br />
-            접속하시는 기기 환경에 맞춰 자동으로 이동합니다.
-          </div>
-          <Separator />
-          <div className="flex flex-col space-y-3">
-            <Button className="w-full h-11" variant="default" asChild>
-              <a href="https://sobo.house">공식 홈페이지 방문</a>
-            </Button>
-            <Button className="w-full h-11" variant="outline" asChild>
-              <a href="mailto:contact@sobo.house">문의하기</a>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-      <footer className="mt-8 text-xs text-gray-400">
-        © 2024 Sobo. All rights reserved.
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-background transition-colors duration-300">
+      <div className="flex flex-col items-center gap-8">
+        <Image
+          src="/logo.svg"
+          alt="sobo Logo"
+          width={120}
+          height={120}
+          className="dark:invert" // 다크모드 대응 필요시 (로고 색상에 따라)
+          priority
+        />
+
+        <Button className="w-40 h-11" variant="outline" asChild>
+          <a href="mailto:madebysobo@gmail.com">문의하기</a>
+        </Button>
+      </div>
+
+      <footer className="fixed bottom-8 text-xs text-muted-foreground">
+        © 2026 sobo. All rights reserved.
       </footer>
     </main>
   );
