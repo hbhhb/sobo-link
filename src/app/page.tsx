@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function Home() {
@@ -8,14 +7,10 @@ export default function Home() {
         <Image
           src="/logo.svg"
           alt="sobo Logo"
-          width={120}
-          height={120}
+          width={96}
+          height={96}
           priority
         />
-
-        <Button className="w-40 h-11" variant="outline" asChild>
-          <a href="mailto:madebysobo@gmail.com">문의하기</a>
-        </Button>
       </div>
 
       <footer className="fixed bottom-8 text-xs text-muted-foreground">
