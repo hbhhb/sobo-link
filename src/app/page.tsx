@@ -10,7 +10,6 @@ export default function Home() {
           alt="sobo Logo"
           width={120}
           height={120}
-          className="dark:invert" // 다크모드 대응 필요시 (로고 색상에 따라)
           priority
         />
 
