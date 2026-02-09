@@ -19,27 +19,27 @@ export function middleware(request: NextRequest) {
     const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
     const isAndroid = /Android/i.test(userAgent);
 
-    // 4. 목적지 결정
-    let targetUrl = appConfig.redirects.default;
-    if (isIOS) {
-        targetUrl = appConfig.redirects.ios;
-    } else if (isAndroid) {
-        targetUrl = appConfig.redirects.android;
+    // 4. 모바일 환경: 앱스토어로 리다이렉트
+    if (isIOS || isAndroid) {
+        const targetUrl = isIOS ? appConfig.redirects.ios : appConfig.redirects.android;
+
+        // Query Parameter 보존 (UTM 등)
+        try {
+            const targetUrlObj = new URL(targetUrl);
+            request.nextUrl.searchParams.forEach((value, key) => {
+                targetUrlObj.searchParams.append(key, value);
+            });
+
+            // 307 Temporary Redirect
+            return NextResponse.redirect(targetUrlObj, 307);
+        } catch (error) {
+            console.error('Invalid Target URL:', targetUrl);
+            return NextResponse.next();
+        }
     }
 
-    // 5. Query Parameter 보존 (UTM 등)
-    try {
-        const targetUrlObj = new URL(targetUrl);
-        request.nextUrl.searchParams.forEach((value, key) => {
-            targetUrlObj.searchParams.append(key, value);
-        });
-
-        // 6. 307 Temporary Redirect
-        return NextResponse.redirect(targetUrlObj, 307);
-    } catch (error) {
-        console.error('Invalid Target URL:', targetUrl);
-        return NextResponse.next();
-    }
+    // 5. PC 환경: 페이지 렌더링 (리다이렉트 없음)
+    return NextResponse.next();
 }
 
 export const config = {
