@@ -27,22 +27,27 @@ export async function generateMetadata({ params }: AppPageProps): Promise<Metada
     const description = appConfig.description.en;
     const imageUrl = `https://sobo-link.vercel.app${appConfig.icon || '/logo.svg'}`;
     const pageUrl = `https://sobo-link.vercel.app/${slug}`;
+    const iconUrl = appConfig.icon || '/logo.svg';
 
     return {
-        title: 'Time Ledger',
-        description: 'Budget your time',
+        title: name,
+        description: description,
+        icons: {
+            icon: iconUrl,
+            apple: iconUrl,
+        },
         openGraph: {
-            title: 'Time Ledger',
-            description: 'Budget your time',
-            url: 'https://sobo-link.vercel.app/time-ledger',
+            title: name,
+            description: description,
+            url: pageUrl,
             siteName: 'sobo Link',
             images: [{ url: imageUrl, width: 512, height: 512 }],
             type: 'website',
         },
         twitter: {
             card: 'summary',
-            title: 'Time Ledger',
-            description: 'Budget your time',
+            title: name,
+            description: description,
             images: [imageUrl],
         },
     };
